@@ -1,0 +1,26 @@
+#Cloudbuild pipeline which builds the image that supports both Linux x86_64 and ARM processors.
+steps:
+- name: gcr.io/cloud-builders/docker
+  args:
+    - buildx
+    - create
+    - '--driver'
+    - docker-container
+    - '--name'
+    - container
+    - '--use'
+
+- name: gcr.io/cloud-builders/docker
+  args:
+    - buildx
+    - build
+    - '--platform'
+    - $_DOCKER_BUILDX_PLATFORMS
+    - -t
+    - ${_IMAGE_REGISTRY}:latest
+    - '--push'
+    - '.'
+
+substitutions:
+  _IMAGE_REGISTRY: europe-west2-docker.pkg.dev/learning-317810/docker/platform-engineering
+  _DOCKER_BUILDX_PLATFORMS: 'linux/amd64,linux/arm64'

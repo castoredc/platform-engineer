@@ -1,0 +1,20 @@
+#Cloudbuild pipeline to build the image and then push it to my private image registry in GCP.
+steps:
+- name: gcr.io/cloud-builders/docker
+  id: build-image
+  entrypoint: /bin/bash
+  args:
+    - "-c"
+    - |
+      docker build \
+      -t ${_IMAGE_REGISTRY}:latest \
+      .
+
+- name: gcr.io/cloud-builders/docker
+  id: push-image
+  args:
+    - push
+    - ${_IMAGE_REGISTRY}:latest
+
+substitutions:
+  _IMAGE_REGISTRY: europe-west2-docker.pkg.dev/learning-317810/docker/platform-engineering
