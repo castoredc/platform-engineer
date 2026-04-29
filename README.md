@@ -14,11 +14,12 @@ As part of this task you will need to:
   - No constraints on the base image or the container runtime.
 - Provide instructions on how to build and run the container image in a README file.
 - Create a CI pipeline that builds the container image and pushes it to a registry.
-  - The container must be able to run on Linux x86_64 and ARM processors both.
+  - The container must be able to run on both Linux x86_64 and ARM processors.
   - You can use any CI tool you like, but the pipeline needs to be defined in code.
+- Include Kubernetes manifests that can be used to deploy the application to a Kubernetes cluster.
 
 ## Submission
 
 1. Fork this repository.
 1. Complete the task and commit it to your fork.
-1. Send us a link to your fork. If you would like to keep it private, please add `@MattiasAng`, `@zoni` and `@ja-sg` as collaborators.
+1. Send us a link to your fork. If you would like to keep it private, please add `@MattiasAng` and `@mirsafari` as collaborators.
